@@ -1,0 +1,42 @@
+name: 'Dispatch and phone home to report status'
+description: 'Dispatches a workflow and let it set the status back on the caller'
+inputs:
+  dispatch-token:
+    description: Token that will be used to authenticate on the dispatched repo
+    required: false
+    default: ${{ github.token }}
+  dispatch-repository:
+    description: Path to the repository with the dispatched workflow
+    required: true
+  dispatch-ref:
+    description: Ref of the repository to dispatch
+    required: true
+  dispatch-workflow:
+    description: Workflow to dispatch
+    required: true
+  status-context:
+    description: The context of the status report
+    required: true
+  status-token:
+    description: Token used to report status
+    required: false
+    default: ${{ github.token }}
+  status-repository:
+    description: Repository to report status to
+    required: false
+    default: ${{ github.repository }}
+  status-sha:
+    description: Commit hash to set the status to
+    required: false
+    default: ${{ github.sha }}
+  inputs:
+    description: JSON String with inputs to the workflow
+    required: false
+  phone-home-input-name:
+    description: Input name to the dispatched workflow with the information to report back the status
+    required: false
+    default: phone-home
+
+runs:
+  using: 'node20'
+  main: 'index.js'
