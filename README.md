@@ -8,9 +8,9 @@ This is useful when you want to dispatch a workflow in a
 different organization, and want the status to be reported back
 to be used by the status checks.
 
-This action is to be used in conjunction with [casaroli/phone-home](https://github.com/casaroli/phone-home/)
+This action is to be used in conjunction with [midokura/phone-home](https://github.com/midokura/phone-home/)
 
-The development and the source files are in [casaroli/repo-dispatch](https://github.com/casaroli/repo-dispatch/).
+The development and the source files are in [midokura/repo-dispatch](https://github.com/midokura/repo-dispatch/).
 If you have any problems, please open an issue there.
 
 ## Inputs
@@ -82,9 +82,9 @@ jobs:
     name: Dispatch another workflow
     runs-on: ubuntu-22.04
     steps:
-      - uses: casaroli/dispatch-phone-home@v1
+      - uses: midokura/dispatch-phone-home@v1
         with:
-          dispatch-repository: casaroli/my-other-repository
+          dispatch-repository: midokura/my-other-repository
           dispatch-ref: main
           dispatch-workflow: dispatched.yml
           status-context: My other checks
@@ -96,7 +96,7 @@ jobs:
 
 ```
 
-See the example for [casaroli/phone-home](https://github.com/casaroli/phone-home/) for the corresponding dispatched workflow.
+See the example for [midokura/phone-home](https://github.com/midokura/phone-home/) for the corresponding dispatched workflow.
 
 ### Dispatched workflow
 
@@ -113,13 +113,13 @@ on:
       phone-home:
         type: string
         required: false
-    
+
 jobs:
   dispatched:
     name: Dispatched job
     runs-on: ubuntu-22.04
     steps:
-      - uses: casaroli/phone-home@v1
+      - uses: midokura/phone-home@v1
         with:
           phone-home-input: ${{ inputs.phone-home }}
 
